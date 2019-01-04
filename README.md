@@ -48,7 +48,7 @@ It should support the following methods and paths:
 
  
 
-##Step 2:
+## Step 2:
 
 Create a React-Native IOS app that uses pure react components to provide a working UI for the reservation API created in step 1.
 
