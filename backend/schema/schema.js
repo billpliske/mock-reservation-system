@@ -60,7 +60,7 @@ const Mutation = new GraphQLObjectType({
                 departureDate: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve(parent, args) {
-                let reservation = new Reservsation({
+                let reservation = new Reservation({
                     name: args.name,
                     hotelName: args.hotelName,
                     arrivalDate: args.arrivalDate,
