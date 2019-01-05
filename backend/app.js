@@ -10,9 +10,7 @@ const app = express();
 app.use(cors());
 
 // connect to mlab database
-mongoose.connect(
-    "mongodb://pliske:!hiltonmock19!@ds023664.mlab.com:23664/reservations"
-);
+mongoose.connect("");
 mongoose.connection.once("open", () => {
     console.log("connected to database");
 });

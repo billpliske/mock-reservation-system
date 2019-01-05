@@ -5,7 +5,7 @@ import { graphql, compose, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import { Formik } from "formik";
-// import { addReservationMutation } from "../queries/queries";
+import { getReservationsQuery } from "../queries/queries";
 
 const addReservation = gql`
     mutation addReservation(
@@ -61,7 +61,10 @@ class CreateReservation extends Component {
 
         return (
             <StyledView>
-                <Mutation mutation={addReservation}>
+                <Mutation
+                    mutation={addReservation}
+                    refetchQueries={[{ query: getReservationsQuery }]}
+                >
                     {(addReservationMutation, { data }) => (
                         <StyledView>
                             <View>
