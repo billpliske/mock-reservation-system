@@ -1,11 +1,12 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema");
-const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 // connect to mlab database
 mongoose.connect(process.env.DBPATH);
+
 mongoose.connection.once("open", () => {
     console.log("connected to database");
 });
