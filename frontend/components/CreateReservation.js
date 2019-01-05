@@ -1,10 +1,33 @@
 //import libraries
 import React, { Component } from "react";
 import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
-import { graphql, compose } from "react-apollo";
+import { graphql, compose, Mutation } from "react-apollo";
+import gql from "graphql-tag";
 import styled from "styled-components";
 import { Formik } from "formik";
-import { addReservationMutation } from "../queries/queries";
+// import { addReservationMutation } from "../queries/queries";
+
+const addReservation = gql`
+    mutation addReservation(
+        $name: String!
+        $hotelName: String!
+        $arrivalDate: String!
+        $departureDate: String!
+    ) {
+        addReservation(
+            name: $name
+            hotelName: $hotelName
+            arrivalDate: $arrivalDate
+            departureDate: $departureDate
+        ) {
+            id
+            name
+            hotelName
+            arrivalDate
+            departureDate
+        }
+    }
+`;
 
 // create a component
 class CreateReservation extends Component {
@@ -18,64 +41,97 @@ class CreateReservation extends Component {
         };
     }
 
-    submitForm(e) {
-        e.preventDefault();
-        // use the addReservationMutation
-        this.props.addReservationMutation({
-            variables: {
-                name: this.state.name,
-                hotelName: this.state.hotelName,
-                arrivalDate: this.state.arrivalDate,
-                departureDate: this.state.departureDate
-            },
-            refetchQueries: [{ query: getReservationsQuery }]
-        });
-        // document.getElementById("add-reservation").reset();
-        // document.querySelector("input").focus();
-    }
+    // submitForm(e) {
+    //     e.preventDefault();
+    //     // use the addReservationMutation
+    //     this.props.addReservation({
+    //         variables: {
+    //             name: this.state.name,
+    //             hotelName: this.state.hotelName,
+    //             arrivalDate: this.state.arrivalDate,
+    //             departureDate: this.state.departureDate
+    //         },
+    //         refetchQueries: [{ query: getReservationsQuery }]
+    //     });
+    //     // document.getElementById("add-reservation").reset();
+    //     // document.querySelector("input").focus();
+    // }
     render() {
         console.log(this.state);
 
         return (
             <StyledView>
-                <View>
-                    <Text>Your name:</Text>
-                    <StyledTextInput
-                        type="text"
-                        onChangeText={e => this.setState({ name: e })}
-                    />
-                </View>
-                <View>
-                    <Text>Hotel Name:</Text>
-                    <StyledTextInput
-                        type="text"
-                        onChangeText={e => this.setState({ hotelName: e })}
-                    />
-                </View>
-                <View>
-                    <Text>Arrival Date:</Text>
-                    <StyledTextInput
-                        type="text"
-                        onChangeText={e => this.setState({ arrivalDate: e })}
-                    />
-                </View>
-                <View>
-                    <Text>Departure Date:</Text>
-                    <StyledTextInput
-                        type="text"
-                        onChangeText={e => this.setState({ departureDate: e })}
-                    />
-                </View>
+                <Mutation mutation={addReservation}>
+                    {(addReservationMutation, { data }) => (
+                        <StyledView>
+                            <View>
+                                <Text>Your name:</Text>
+                                <StyledTextInput
+                                    type="text"
+                                    value={this.state.name}
+                                    onChangeText={e =>
+                                        this.setState({ name: e })
+                                    }
+                                />
+                            </View>
+                            <View>
+                                <Text>Hotel Name:</Text>
+                                <StyledTextInput
+                                    type="text"
+                                    value={this.state.hotelName}
+                                    onChangeText={e =>
+                                        this.setState({ hotelName: e })
+                                    }
+                                />
+                            </View>
+                            <View>
+                                <Text>Arrival Date:</Text>
+                                <StyledTextInput
+                                    type="text"
+                                    value={this.state.arrivalDate}
+                                    onChangeText={e =>
+                                        this.setState({ arrivalDate: e })
+                                    }
+                                />
+                            </View>
+                            <View>
+                                <Text>Departure Date:</Text>
+                                <StyledTextInput
+                                    type="text"
+                                    value={this.state.departureDate}
+                                    onChangeText={e =>
+                                        this.setState({ departureDate: e })
+                                    }
+                                />
+                            </View>
 
-                <Submit
-                    title="Submit"
-                    type="submit"
-                    onPress={() => {
-                        this.submitForm.bind(this);
-                    }}
-                >
-                    <Text>Submit</Text>
-                </Submit>
+                            <Submit
+                                title="Submit"
+                                onPress={() => {
+                                    addReservationMutation({
+                                        variables: {
+                                            name: this.state.name,
+                                            hotelName: this.state.hotelName,
+                                            arrivalDate: this.state.arrivalDate,
+                                            departureDate: this.state
+                                                .departureDate
+                                        }
+                                    })
+                                        .then(res => res)
+                                        .catch(err => <Text>{err}</Text>);
+                                    this.setState({
+                                        name: "",
+                                        hotelName: "",
+                                        arrivalDate: "",
+                                        departureDate: ""
+                                    });
+                                }}
+                            >
+                                <Text>Submit</Text>
+                            </Submit>
+                        </StyledView>
+                    )}
+                </Mutation>
             </StyledView>
         );
     }
@@ -95,6 +151,4 @@ const Submit = styled.TouchableOpacity`
     padding: 30px;
 `;
 
-export default compose(
-    graphql(addReservationMutation, { name: "addReservationMutation" })
-)(CreateReservation);
+export default CreateReservation;
