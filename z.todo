@@ -1,4 +1,6 @@
 Features
-☐ Add page transitions
-    https://github.com/fram-x/FluidTransitions
-    https://reactnavigation.org/
+
+☐ Put instructions on repo README
+✔ Set up tabbed navigation @done(19-01-05 18:33)
+☐ Get Find screen working
+☐ Try this Datepicker: https://github.com/xgfe/react-native-datepicker

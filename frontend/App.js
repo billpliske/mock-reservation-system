@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, ScrollView, Image } from "react-native";
 import ApolloClient from "apollo-client";
 import { HttpLink, InMemoryCache } from "apollo-client-preset";
 import { ApolloProvider } from "react-apollo";
-import Reservation from "./Reservation";
+import styled from "styled-components";
+import Router from "./Router";
 
 // Needs actual IP here for local development, localhost will crash it
 const client = new ApolloClient({
@@ -15,10 +16,12 @@ class App extends React.Component {
     render() {
         return (
             <ApolloProvider client={client}>
-                <Reservation />
+                <Router />
             </ApolloProvider>
         );
     }
 }
+
+// STYLES HERE
 
 export default App;
