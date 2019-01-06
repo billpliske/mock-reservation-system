@@ -57,6 +57,12 @@ class ListReservation extends Component {
                                 {reservation.departureDate}
                             </Item>
                         </ItemWrapper>
+                        <ItemWrapper>
+                            <Item>
+                                <Strong>ID: </Strong>
+                                {reservation.id}
+                            </Item>
+                        </ItemWrapper>
                     </Customer>
                 );
             });

@@ -4,3 +4,14 @@ Features
 ✔ Set up tabbed navigation @done(19-01-05 18:33)
 ☐ Get Find screen working
 ☐ Try this Datepicker: https://github.com/xgfe/react-native-datepicker
+
+
+Commands
+☐ react-native run-android
+☐ command + m = enable hot reloaing
+☐ react-native log-android
+☐ react-native run-ios
+
+
+iOS issues
+☐  I had the same error and was able to run the app only through Xcode. react-native run-ios did not work. To resolve the issue you need to remove the build folder YOUR_PROJECT/ios/build/. After this you should be able to run your app through react-native run-ios again. Hope this helps.

@@ -4,7 +4,7 @@ import ApolloClient from "apollo-client";
 import { HttpLink, InMemoryCache } from "apollo-client-preset";
 import { ApolloProvider } from "react-apollo";
 import styled from "styled-components";
-import Router from "./Router";
+import RouterWrapper from "./Router";
 
 // Needs actual IP here for local development, localhost will crash it
 const client = new ApolloClient({
@@ -16,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <ApolloProvider client={client}>
-                <Router />
+                <RouterWrapper />
             </ApolloProvider>
         );
     }

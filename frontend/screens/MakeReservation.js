@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { graphql, compose, Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import DatePicker from "react-native-datepicker";
 import styled from "styled-components";
 import { getReservationsQuery } from "../queries/queries";
 
@@ -83,30 +84,71 @@ class MakeReservation extends Component {
                                     }
                                 />
                             </ItemView>
-                            <ItemView>
-                                <LabelView>
-                                    <Label>Arrival Date:</Label>
-                                </LabelView>
-                                <StyledTextInput
-                                    type="text"
-                                    value={this.state.arrivalDate}
-                                    onChangeText={e =>
-                                        this.setState({ arrivalDate: e })
-                                    }
-                                />
-                            </ItemView>
-                            <ItemView>
-                                <LabelView>
-                                    <Label>Departure Date:</Label>
-                                </LabelView>
-                                <StyledTextInput
-                                    type="text"
-                                    value={this.state.departureDate}
-                                    onChangeText={e =>
-                                        this.setState({ departureDate: e })
-                                    }
-                                />
-                            </ItemView>
+                            <DateWrapper>
+                                <DateView>
+                                    <LabelView>
+                                        <Label>Arrival Date:</Label>
+                                    </LabelView>
+
+                                    <DatePicker
+                                        mode="date"
+                                        date={this.state.arrivalDate}
+                                        placeholder="Select Date"
+                                        format="M-DD-YYYY"
+                                        confirmBtnText="Confirm"
+                                        cancelBtnText="Cancel"
+                                        customStyles={{
+                                            dateIcon: {
+                                                position: "absolute",
+                                                left: 0,
+                                                top: 4,
+                                                marginLeft: 0
+                                            },
+                                            dateInput: {
+                                                marginLeft: 36,
+                                                backgroundColor: "#fff",
+                                                padding: 5
+                                            }
+                                        }}
+                                        onDateChange={e =>
+                                            this.setState({
+                                                arrivalDate: e
+                                            })
+                                        }
+                                    />
+                                </DateView>
+                                <DateView>
+                                    <LabelView>
+                                        <Label>Departure Date:</Label>
+                                    </LabelView>
+                                    <DatePicker
+                                        mode="date"
+                                        date={this.state.departureDate}
+                                        placeholder="Select Date"
+                                        format="M-DD-YYYY"
+                                        confirmBtnText="Confirm"
+                                        cancelBtnText="Cancel"
+                                        customStyles={{
+                                            dateIcon: {
+                                                position: "absolute",
+                                                left: 0,
+                                                top: 4,
+                                                marginLeft: 0
+                                            },
+                                            dateInput: {
+                                                marginLeft: 36,
+                                                backgroundColor: "#fff",
+                                                padding: 5
+                                            }
+                                        }}
+                                        onDateChange={e =>
+                                            this.setState({
+                                                departureDate: e
+                                            })
+                                        }
+                                    />
+                                </DateView>
+                            </DateWrapper>
 
                             <Submit
                                 title="Submit"
@@ -162,6 +204,15 @@ const ItemView = styled.View`
     padding: 5px 0;
 `;
 
+const DateWrapper = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const DateView = styled.View`
+    padding: 5px 30px 5px 0;
+`;
+
 const LabelView = styled.View`
     padding: 5px 0;
 `;
@@ -172,12 +223,14 @@ const Label = styled.Text`
 
 const StyledTextInput = styled.TextInput`
     background-color: #fff;
+    height: 50px;
+    padding: 10px;
 `;
 
 const Submit = styled.TouchableOpacity`
     background-color: orange;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 15px;
+    margin-top: 30px;
     width: 50%;
 `;
 
