@@ -1,5 +1,7 @@
 # mock-reservation-system
 
+--- IN PROGRESS (I'll remove this when complete) ----
+
 The ask is to create a mock reservation system. You will build two apps, the first is to provide an API for the reservation system, the second, will be a react-native app that uses the API.
 
 ## The Tech Stack
