@@ -41,4 +41,4 @@ Coming soon.
 ### Gotchas
 
 -   use IP, not localhost in client
--   Make sure to call if (data.loading)... otherwise will think array is empty.
+-   Make sure to call `if (data.loading)`... otherwise will think array is empty.
