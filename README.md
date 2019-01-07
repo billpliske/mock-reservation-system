@@ -2,53 +2,42 @@
 
 --- IN PROGRESS (I'll remove this when complete) ----
 
-The ask is to create a mock reservation system. You will build two apps, the first is to provide an API for the reservation system, the second, will be a react-native app that uses the API.
+I was asked to create a mock reservation system. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
 
-## The Tech Stack
+## Tech Stack
 
 -   React
-
 -   React-Native
-
 -   Express
-
 -   GraphQL - Apollo
-
 -   Nodejs
 
-## Step 1:
+## To install:
 
-Using GraphQL, create an Express app that simulates a basic reservations system. Use node 8.x.
+1. Clone / download repo.
+2. cd to repo directory.
+3. `cd frontend` and run `yarn` or `npm i`.
+4. cd back out to main repo, and then `cd backend` and run `yarn` or `npm i`.
+5. You've now installed the _frontend_ and _backend_.
+6. You might want to open some terminal tabs for the rest of this.
+7. Tab #1, cd to backend, and run `npm start`. Local GraphQL server now running.
 
-A reservation should have the following fields:
+## Have Android Studio / emulator running?
 
--   name
+1. Open new tab, cd to _frontend_, and run `react-native run-android`.
+2. **Debugging:** Open new tab, cd to _frontend_, and run `react-native log-android`.
+3. **Emulator hot loading:** Select emulator, Command + m, choose hot reloading.
+4. **Device hit reloading:** Shake Android phone, choose hot reloading.
 
--   id
+## Have iOS Simulator running?
 
--   hotelName
+1. Open new tab, cd to _frontend_, and run `react-native run-ios`.
+2. **Debugging:** Command + d should open up a good debugger.
+3. **Hot reloading:** Command = d, choose hot reloading.
 
--   arrivalDate
+## Download React Native app from PlayStore
 
--   departureDate
-
-It should support the following methods and paths:
-
--   GET /reservation/ID – Returns a single reservation with ID
-
--   POST /reservation – Creates a new reservation, assigns an ID to it, and returns that ID
-
--   GET /reservations – Returns all reservations
-
-## Step 2:
-
-Create a React-Native IOS app that uses pure react components to provide a working UI for the reservation API created in step 1.
-
-Bonus: Use flow to statically type check your code.
-
-### Logging
-
--   react-native log-android
+Coming soon.
 
 ### Gotchas
 

@@ -29,7 +29,7 @@ const Router = createMaterialTopTabNavigator(
         }
     },
     {
-        initialRouteName: "Find",
+        initialRouteName: "Make",
         // order: ['Settings', 'Home'],
         activeColor: "gold",
         inactiveColor: "white",
