@@ -53,3 +53,4 @@ Bonus: Use flow to statically type check your code.
 ### Gotchas
 
 -   use IP, not localhost in client
+-   Make sure to call if (data.loading)... otherwise will think array is empty.
