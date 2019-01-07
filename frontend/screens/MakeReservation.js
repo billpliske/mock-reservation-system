@@ -49,7 +49,7 @@ class MakeReservation extends Component {
     }
 
     render() {
-        console.log(this.state);
+        // console.log(this.state);
 
         return (
             <StyledBackground>

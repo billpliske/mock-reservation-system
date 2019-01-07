@@ -10,7 +10,8 @@ class FindReservation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: "5c30021111ca464eec96fbe3"
+            query: "",
+            id: ""
         };
     }
 
@@ -18,61 +19,103 @@ class FindReservation extends Component {
         var data = this.props.data;
 
         if (data.loading) {
-            return <Text>Loading reservations...</Text>;
+            console.log("waiting for load");
         } else {
-            return data.reservations
-                .filter(res => {
-                    return res.id === this.state.id;
-                })
-                .map(reservation => {
-                    return (
-                        <Customer
-                            key={reservation.id}
-                            onClick={e =>
-                                this.setState({ selected: reservation.id })
-                            }
-                        >
-                            <Name>{reservation.name}</Name>
-                            <ItemWrapperLead>
-                                <Item>
-                                    <Strong>Hotel: </Strong>
-                                    {reservation.hotelName}
-                                </Item>
-                            </ItemWrapperLead>
-                            <ItemWrapper>
-                                <Item>
-                                    <Strong>Arrival date: </Strong>
-                                    {reservation.arrivalDate}
-                                </Item>
-                            </ItemWrapper>
-                            <ItemWrapper>
-                                <Item>
-                                    <Strong>Departure date: </Strong>
-                                    {reservation.departureDate}
-                                </Item>
-                            </ItemWrapper>
-                            <ItemWrapper>
-                                <Item>
-                                    <Strong>ID: </Strong>
-                                    {reservation.id}
-                                </Item>
-                            </ItemWrapper>
-                        </Customer>
-                    );
-                });
+            let filteredData = data.reservations.filter(filt => {
+                return filt.id === this.state.id;
+            });
+            console.log(filteredData);
+
+            if (this.state.id === "") {
+                return;
+            } else if (filteredData[0] === this.state.data) {
+                return (
+                    <ErrorMessage>
+                        Customer ID does not exist. Please try again.
+                    </ErrorMessage>
+                );
+            } else {
+                return data.reservations
+                    .filter(res => {
+                        console.log("FILTER: " + res.name);
+                        return res.id === this.state.id;
+                    })
+                    .map(res => {
+                        console.log("MAP: " + res.name);
+
+                        if (res.name != "") {
+                            return (
+                                <Customer key={res.id}>
+                                    <Name>{res.name}</Name>
+                                    <ItemWrapperLead>
+                                        <Item>
+                                            <Strong>Hotel: </Strong>
+                                            {res.hotelName}
+                                        </Item>
+                                    </ItemWrapperLead>
+                                    <ItemWrapper>
+                                        <Item>
+                                            <Strong>Arrival date: </Strong>
+                                            {res.arrivalDate}
+                                        </Item>
+                                    </ItemWrapper>
+                                    <ItemWrapper>
+                                        <Item>
+                                            <Strong>Departure date: </Strong>
+                                            {res.departureDate}
+                                        </Item>
+                                    </ItemWrapper>
+                                    <ItemWrapper>
+                                        <Item>
+                                            <Strong>ID: </Strong>
+                                            {res.id}
+                                        </Item>
+                                    </ItemWrapper>
+                                </Customer>
+                            );
+                        } else {
+                            return (
+                                <Customer>
+                                    <Item>No ID in our records.</Item>
+                                </Customer>
+                            );
+                        }
+                    });
+            }
         }
     }
-    render() {
-        var data = this.props.data;
-        console.log("log: " + data.reservations);
 
+    render() {
         return (
             <Wrapper>
                 <InnerView>
-                    <Header>Find your reservation</Header>
+                    <Header>Find reservation</Header>
                     <Readout>
                         Enter a customer ID below for more details.
                     </Readout>
+                    <ItemView>
+                        <LabelView>
+                            <Label>Your name:</Label>
+                        </LabelView>
+                        <StyledTextInput
+                            placeholder="Enter customer ID"
+                            type="text"
+                            value={this.state.query}
+                            onChangeText={e => this.setState({ query: e })}
+                        />
+                    </ItemView>
+                    <Submit
+                        title="Submit"
+                        onPress={() => {
+                            // this.checkID();
+                            this.setState({
+                                id: this.state.query,
+                                query: ""
+                            });
+                        }}
+                    >
+                        <SubmitText>Submit</SubmitText>
+                    </Submit>
                     {this.displayReservation()}
                 </InnerView>
             </Wrapper>
@@ -91,6 +134,12 @@ const InnerView = styled.View`
     padding-bottom: 40px;
 `;
 
+const ErrorMessage = styled.Text`
+    font-size: 18px;
+    padding: 40px;
+    color: #fff;
+`;
+
 const Header = styled.Text`
     font-family: "raleway-blackitalic";
     font-weight: normal;
@@ -100,7 +149,7 @@ const Header = styled.Text`
 
 const Readout = styled.Text`
     color: #fff;
-    padding-top: 10px;
+    padding: 5px 0 20px 0;
 `;
 
 const Subhead = styled.Text`
@@ -112,7 +161,11 @@ const Subhead = styled.Text`
 `;
 
 const Customer = styled.View`
-    margin: 10px 0 40px 0;
+    margin: 30px 0 40px 0;
+    color: #fff;
+`;
+
+const Label = styled.Text`
     color: #fff;
 `;
 
@@ -145,6 +198,35 @@ const Item = styled.Text`
 
 const Strong = styled.Text`
     font-weight: bold;
+`;
+
+const ItemView = styled.View`
+    padding: 5px 0;
+`;
+
+const LabelView = styled.View`
+    padding: 5px 0;
+`;
+
+const StyledTextInput = styled.TextInput`
+    background-color: #fff;
+    height: 50px;
+    padding: 10px;
+`;
+
+const Submit = styled.TouchableOpacity`
+    background-color: orange;
+    padding: 15px;
+    margin: 15px 0 10px 0;
+    width: 40%;
+`;
+
+const SubmitText = styled.Text`
+    color: #000;
+    font-family: "raleway-bold";
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
 `;
 
 export default graphql(getReservationsQuery)(FindReservation);
