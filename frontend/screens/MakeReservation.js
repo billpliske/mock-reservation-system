@@ -49,8 +49,6 @@ class MakeReservation extends Component {
     }
 
     render() {
-        // console.log(this.state);
-
         return (
             <StyledBackground>
                 <Header>Make a reservation</Header>
@@ -181,6 +179,8 @@ class MakeReservation extends Component {
         );
     }
 }
+
+// BEGIN STYLES
 
 const StyledBackground = styled.ScrollView`
     background-color: #36474f;

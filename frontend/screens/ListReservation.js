@@ -82,7 +82,7 @@ class ListReservation extends Component {
     }
 }
 
-// STYLES
+// BEGIN STYLES
 
 const Wrapper = styled.ScrollView`
     padding: 30px;
