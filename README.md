@@ -18,7 +18,8 @@ I was asked to create a mock reservation system. Two apps: the first is to provi
 4. cd back out to main repo, and then `cd backend` and run `yarn` or `npm i`.
 5. You've now installed the _frontend_ and _backend_.
 6. You might want to open some terminal tabs for the rest of this.
-7. Tab #1, cd to backend, and run `npm start`. Local GraphQL server now running.
+7. Open **backend/app.js**, and replace the **process.env.DBPATH** environmental variable with a URL to your own DB instance. Mine was an mLab Mongo DB URL.
+8. Tab #1, cd to backend, and run `npm start`. Local GraphQL server now running.
 
 ## Have Android Studio / emulator running?
 
@@ -31,7 +32,7 @@ I was asked to create a mock reservation system. Two apps: the first is to provi
 
 1. Open new tab, cd to _frontend_, and run `react-native run-ios`.
 2. **Debugging:** Command + d should open up a good debugger.
-3. **Hot reloading:** Command = d, choose hot reloading.
+3. **Hot reloading:** Command + d, choose hot reloading.
 
 ## Download React Native app from PlayStore
 
