@@ -13,5 +13,3 @@ Commands
 ☐ react-native run-ios
 
 
-iOS issues
-☐  I had the same error and was able to run the app only through Xcode. react-native run-ios did not work. To resolve the issue you need to remove the build folder YOUR_PROJECT/ios/build/. After this you should be able to run your app through react-native run-ios again. Hope this helps.
