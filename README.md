@@ -2,6 +2,7 @@
 
 I was asked to create a mock reservation system. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
 
+**Play Store download**: https://play.google.com/store/apps/details?id=com.pliske_reservation
 **video example:** https://youtu.be/jqJUWwZGlyA
 
 ## Tech Stack
