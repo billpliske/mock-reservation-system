@@ -42,7 +42,7 @@ I was asked to create a mock reservation system. Two apps: the first is to provi
 
 ## Download React Native app from PlayStore
 
-Coming soon.
+https://play.google.com/store/apps/details?id=com.pliske_reservation
 
 ### Gotchas
 
