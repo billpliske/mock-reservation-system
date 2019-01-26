@@ -1,3 +1,5 @@
+![Mock Reservation System](https://res.cloudinary.com/billpliske/image/upload/v1548482966/mock-reservation-header.jpg)
+
 # mock-reservation-system
 
 I was asked to create a mock reservation system. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
