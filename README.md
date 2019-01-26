@@ -2,7 +2,7 @@
 
 # mock-reservation-system
 
-I was asked to create a mock reservation system. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
+I was asked to create a reservation system demo for a job interview. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
 
 **Live Play Store app**: https://play.google.com/store/apps/details?id=com.pliske_reservation
 
