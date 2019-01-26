@@ -2,6 +2,8 @@
 
 I was asked to create a mock reservation system. Two apps: the first is to provide an API for the reservation system — the second, a react-native app that uses the API.
 
+**video example:** https://youtu.be/jqJUWwZGlyA
+
 ## Tech Stack
 
 -   React
