@@ -1,4 +1,4 @@
-package com.frontend;
+package com.pliske_reservation;
 
 import android.app.Application;
 

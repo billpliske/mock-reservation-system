@@ -8,7 +8,7 @@ import RouterWrapper from "./Router";
 
 // Needs actual IP here for local development, localhost will crash it
 const client = new ApolloClient({
-    link: new HttpLink({ uri: "http://192.168.1.7:4000/graphql" }),
+    link: new HttpLink({ uri: "http://104.129.5.96:4001/graphql" }),
     cache: new InMemoryCache().restore({})
 });
 
